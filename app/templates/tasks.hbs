@@ -1,0 +1,7 @@
+{{outlet}}
+
+{{#each @model as |task|}}
+  {{task.id}}:
+  {{task.description}}
+  {{task.deadline}}
+{{/each}}
