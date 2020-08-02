@@ -1,7 +1,45 @@
-{{outlet}}
+{{!-- {{outlet}}
 
 {{#each @model as |task|}}
   {{task.id}}:
   {{task.description}}
   {{task.deadline}}
-{{/each}}
+{{/each}} --}}
+
+<h2 class="text-center">Ember To Do List</h2>
+<br>
+<div class="container">
+  <form>
+    <div class="form-group">
+      Due: {{input value=deadline}}
+      Task description: {{input value=description}}
+      <button {{action 'save' description deadline}} class="btn btn-success" type="submit">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+    </div>
+  </form>
+</div>
+<br>
+<div class="container">
+  <button type="button" class="btn btn-primary">All</button>
+  <button type="button" class="btn btn-primary">Complete</button>
+  <button type="button" class="btn btn-primary">Incomplete</button>
+</div>
+<br>
+<div class="container">
+  <div class="list-group">
+    {{#each @model as |task|}}
+      <div class="row">
+        <div class="list-group-item col-md-8">
+          {{task.id}}:
+          {{task.description}}
+          <span class="deadline pull-right"><strong>Due:</strong> {{task.deadline}}</span>
+        </div>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-default edit"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+          <button type="button" class="btn btn-danger remove"><span class="glyphicon glyphicon-minus"></span> Remove</button>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
