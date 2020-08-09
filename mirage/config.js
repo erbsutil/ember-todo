@@ -1,6 +1,6 @@
 export default function() {
 
-  this.resource('task');
+  this.resource('tasks');
 
   // These comments are here to help you get started. Feel free to delete them.
 

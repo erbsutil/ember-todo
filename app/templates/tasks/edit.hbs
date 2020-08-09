@@ -1,0 +1,11 @@
+<h3 class="text-center">Edit Task {{this.task.id}}</h3>
+<br>
+<div class="form-group">
+  Due: {{input value=this.deadline placeholder=task.deadline}}
+  <br>
+  Task description: {{input value=this.description placeholder=task.description}}
+  <br>
+  <button {{on "click" (action this.saveEdit)}} class="btn btn-primary" type="submit">
+    Save
+  </button>
+</div>
