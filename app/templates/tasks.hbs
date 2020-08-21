@@ -1,43 +1,52 @@
-<h2 class="text-center">Ember To Do List</h2>
-<br>
-<div class="form-group">
-       Due: {{input value=this.deadline}}
-       Task description: {{input value=this.description}}
-       <button {{on "click" (action this.save)}} class="btn btn-success" type="submit">
-         Salvar
-       </button>
- </div>
-{{!-- <div class="container">
-  <button type="button" class="btn btn-primary">All</button>
-  <button type="button" class="btn btn-primary">Complete</button>
-  <button type="button" class="btn btn-primary">Incomplete</button>
-</div>
-<br> --}}
-<div class="container">
-  <div class="list-group">
-    {{#each @model as |task|}}
-      <div class="row">
-        <div class="list-group-item col-md-8">
-          {{task.id}}:
-          {{task.description}}
-          <span class="deadline pull-right"><strong>Due:</strong> {{task.deadline}}</span>
-        </div>
-        <div class="col-md-4">
-          <LinkTo class="btn btn-default edit" @route="tasks.edit" @model={{task.id}}>
-            Edit
-          </LinkTo>
-          <button type="button" class="btn btn-danger remove" {{on "click" (action this.delete task)}}>
-            Remove
-          </button>
-        </div>
-      </div>
-    {{/each}}
-  </div>
-</div>
+<div class="flex flex-wrap md items-center ml-auto h-screen">
+  <div class="mr-auto ml-auto w-1/3">
+    <div class="w-full md:text-center">
+      <span class="material-icons md-90">today</span>
+    </div>
 
-<br>
-<div class="container">
-  <div class="row">
+    <div class="mt-6 w-full">
+      {{input value=this.deadline class="bg-white border rounded-lg py-2 px-4 block w-full appearance-none leading-normal" placeholder='Due'}}    
+      {{input value=this.description class="bg-white border rounded-lg py-2 px-4 block w-full mt-3 appearance-none leading-normal" placeholder='Description'}}
+    </div>   
+
+    <div class="w-full">
+       <button {{on "click" (action this.save)}} class="bg-blue py-2 px-4 rounded text-white mt-3 w-full h-12" type="submit">
+        Salvar
+       </button>
+    </div>
+
+    <div class="mt-6 w-full">
+      <table class="table-auto w-full">
+        <thead>
+          <tr>
+            <th class="px-4 py-2 font-normal">ID</th>
+            <th class="px-4 py-2 font-normal">Due</th>
+            <th class="px-4 py-2 font-normal">Description</th>
+            <th class="px-4 py-2 font-normal">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each @model as |task|}}
+          <tr>
+            <td class="border px-4 py-2 md:text-center">{{task.id}}</td>
+            <td class="border px-4 py-2 md:text-center">{{task.deadline}}</td>
+            <td class="border px-4 py-2 md:text-center">{{task.description}}</td> 
+            <td class="border px-4 py-2 md:text-center">
+              <LinkTo class="py-2 px-4 rounded text-blue no-underline" @route="tasks.edit" @model={{task.id}}>
+                Edit
+              </LinkTo>
+              <button type="button" class="py-2 px-4 rounded text-blue" {{on "click" (action this.delete task)}}>
+                Remove
+              </button>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-6">
       {{outlet}}
+    </div>
   </div>
 </div>
